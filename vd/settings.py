@@ -28,10 +28,15 @@ SECRET_KEY = SECRET["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ELASTIC_PORT = 9200
-# ALLOWED_HOSTS = ["92.242.58.138"]
-ELASTIC_PORT = 5000
-ALLOWED_HOSTS = []
+
+PROD = '/home/elmiram' in BASE_DIR
+if not PROD:
+    ALLOWED_HOSTS = []
+    ELASTIC_PORT = 5000
+else:
+    ALLOWED_HOSTS = ["92.242.58.138", 'www.linghub.ru', 'linghub.ru']
+    ELASTIC_PORT = 9200
+
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
